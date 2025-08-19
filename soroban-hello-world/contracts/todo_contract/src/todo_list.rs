@@ -111,4 +111,18 @@ impl Todolist {
             .get(&TODOS)
             .unwrap_or(Vec::new(env))
     }
+
+    pub fn get_todo(env: &Env, id: u32) -> Todo {
+        let todos = Self::get_todos(&env);
+
+        for i in 0..todos.len() {
+            if let Some(todo) = todos.get(i) {
+                if todo.id == id {
+                    return todo;
+                }
+            }
+        }
+
+        todos.get(id).unwrap()
+    }
 }
